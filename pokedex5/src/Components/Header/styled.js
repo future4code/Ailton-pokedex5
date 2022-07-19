@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-// import Poppins from '../../assets/Fonts/Poppins-Regular.ttf'
 
 export const HeaderContainer = styled.div`
 width: 100%;
