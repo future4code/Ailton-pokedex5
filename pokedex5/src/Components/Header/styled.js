@@ -5,8 +5,8 @@ export const HeaderContainer = styled.div`
 width: 100%;
 height: 160px;
 display: flex;
-border: 1px solid black;
 justify-content: space-between;
+background-color: white;
 `
 
 export const DivHeader = styled.div`
@@ -27,14 +27,28 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 padding: 4px 10px;
-width: 287px;
-height: 74px;
+width: 200px;
+height: 55px;
 background: #33A4F5;
 border-radius: 8px;
 border: none;
 font-style: normal;
 font-weight: 700;
-font-size: 24px;
+font-size: 20px;
 line-height: 36px;
 color: white;
+`
+export const Voltar = styled.p`
+font-family: "Poppins";
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 36px;
+text-decoration-line: underline;
+color: #1a1a1a;
+`
+export const VetorImg = styled.img`
+height: 14.58px;
+width: 7.29px;
+margin-right: 10.38px;
 `

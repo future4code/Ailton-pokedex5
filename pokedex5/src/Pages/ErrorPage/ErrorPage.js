@@ -1,7 +1,12 @@
 import React from 'react'
+import Header from '../../Components/Header/Header'
+
 
 export default function ErrorPage() {
   return (
-    <div>ErrorPage</div>
+    <div>
+      <Header/>
+      error
+    </div>
   )
 }

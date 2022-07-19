@@ -1,11 +1,15 @@
 import React from 'react'
 import Logo from '../../assets/Logo.png'
-import {  ButtonHeader, DivHeader, HeaderContainer, ImgHeader } from './styled'
+import Vetor from '../../assets/vetor.png'
+import { VetorImg, Voltar, ButtonHeader, DivHeader, HeaderContainer, ImgHeader } from './styled'
+import { Title } from '../../styleGeral'
 
 export default function Header() {
   return (
     <HeaderContainer>
-      <DivHeader></DivHeader>
+      <DivHeader>
+        <Voltar><VetorImg src={Vetor}/>Todos os Pokémons</Voltar>
+      </DivHeader>
       <DivHeader>
         <ImgHeader src={Logo} />
       </DivHeader>
