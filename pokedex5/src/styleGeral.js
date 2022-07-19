@@ -15,4 +15,14 @@ font-style: normal;
 line-height: 72px;
 margin-top: 60px;
 margin-left: 40px;
+margin-bottom: 55px;
+`
+export const MainGeral = styled.main`
+display:flex;
+flex-wrap: wrap;
+justify-content:center;
+align-items: flex-start; 
+margin: 0 auto;
+ width:100%;
+height:100%;
 `

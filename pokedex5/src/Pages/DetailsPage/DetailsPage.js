@@ -21,6 +21,7 @@ import {
 } from "./styled";
 import Poison from "../../assets/types/poison.png";
 
+
 export default function DetailsPage() {
   return (
     <div>
