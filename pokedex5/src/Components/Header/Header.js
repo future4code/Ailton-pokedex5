@@ -17,23 +17,29 @@ import {
   goToPokedex,
 } from "../../routes/Coordinator";
 
-export default function Header() {
+export default function Header({ page }) {
   const navigate = useNavigate();
   return (
     <HeaderContainer>
       <DivHeader>
-        <Voltar onClick={() => goToHomePage(navigate)}>
-          <VetorImg src={Vetor} />
-          Todos os Pokémons
-        </Voltar>
+        {page !== 'home' &&
+          <Voltar onClick={() => goToHomePage(navigate)}>
+            <VetorImg src={Vetor} />
+            Todos os Pokémons
+          </Voltar>}
       </DivHeader>
       <DivHeader>
-        <ImgHeader onClick={() => goToDetailsPage(navigate, 1)} src={Logo} />
+        <ImgHeader src={Logo} />
       </DivHeader>
       <DivHeader>
-        <ButtonHeader onClick={() => goToPokedex(navigate)}>
-          Pokedéx
-        </ButtonHeader>
+        {page === 'home' &&
+          <ButtonHeader onClick={() => goToPokedex(navigate)}>
+            Pokedéx
+          </ButtonHeader>}
+        {page === 'details' &&
+          <ButtonHeader >
+            Liberar Pokémon 
+          </ButtonHeader>}
       </DivHeader>
     </HeaderContainer>
   );

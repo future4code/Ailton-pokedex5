@@ -10,7 +10,7 @@ export default function HomePage() {
   console.log(myPokes);
   return (
     <div>
-      <Header />
+      <Header page={'home'}/>
       <div>
         <Title>Todos os Pokémons</Title>
       </div>
@@ -25,7 +25,7 @@ export default function HomePage() {
                 myPokes={myPokes}
               />
             );
-          })}
+          })} 
       </MainGeral>
     </div>
   );

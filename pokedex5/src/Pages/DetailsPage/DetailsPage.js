@@ -18,45 +18,71 @@ import {
   PokeOut,
   DivMoves,
   Move,
+  ImgDetails,
 } from "./styled";
 import Poison from "../../assets/types/poison.png";
+import { useParams } from "react-router-dom";
+import { useRequest } from "../../services/hooks/useRequest";
+import { BaseUrl } from "../../constants/baseUrl";
+import { types, colors } from "../../constants/types";
+
 
 
 export default function DetailsPage() {
+
+  const params = useParams()
+
+  const getPokeDetails = useRequest(`${BaseUrl}pokemon/${params.id}`)
+  console.log(getPokeDetails)
+
   return (
-    <div>
-      <Header />
-      <div>
-        <Title>Detalhes</Title>
-      </div>
-      <DetalheCard>
-        <ImageFront>1</ImageFront>
-        <ImageBack>2</ImageBack>
-        <StatusCard>
-          <TitleInfo>Base Stats</TitleInfo>
-        </StatusCard>
-        <PokeballDiv>
-          <PokemonDetail>
-            <PokeName>
-              <PokeId>#01</PokeId>
-              <PokeLetra>Bulbasaur</PokeLetra>
-              <TypeImg src={Poison} /> <TypeImg src={Poison} />
-            </PokeName>
-            <PokeMoves>
-              <TitleInfo>Moves:</TitleInfo>
-              <DivMoves>
-                <Move>Razor Wind</Move>
-                <Move>Sword Dance</Move>
-                <Move>Cut</Move>
-                <Move>Vine Whip</Move>
-              </DivMoves>
-            </PokeMoves>
-          </PokemonDetail>
-          <PokePhoto>
-            <PokeOut src={"https://cdn.discordapp.com/attachments/984825626898882573/999038912553046047/unknown.png"}/>
-          </PokePhoto>
-        </PokeballDiv>
-      </DetalheCard>
-    </div>
+    <>
+      {getPokeDetails &&
+        <div>
+          <Header page={'details'} />
+          <div>
+            <Title>Detalhes</Title>
+          </div>
+          <DetalheCard color={colors[getPokeDetails.types[0].type.name]}>
+            <ImageFront>
+              <ImgDetails src={getPokeDetails.sprites.front_default} />
+            </ImageFront>
+            <ImageBack>
+              <ImgDetails src={getPokeDetails.sprites.back_default} />
+            </ImageBack>
+            <StatusCard>
+              <TitleInfo>Base Stats</TitleInfo>
+            </StatusCard>
+            <PokeballDiv>
+              <PokemonDetail>
+                <PokeName>
+                  <PokeId>{`#${getPokeDetails.id}`}</PokeId>
+                  <PokeLetra>{getPokeDetails.name}</PokeLetra>
+                  {getPokeDetails.types?.map((item) => {
+                    return (
+                      <TypeImg key={item.type.name}
+                        src={types[item.type.name]} />
+                    )
+                  })}
+                </PokeName>
+                <PokeMoves>
+                  <TitleInfo>Moves:</TitleInfo>
+                  <DivMoves>
+                    {getPokeDetails.moves?.map((item, index) => {
+                      return (
+                        <Move key={index}>{item.move.name}</Move>
+                      )
+                    })}
+
+                  </DivMoves>
+                </PokeMoves>
+              </PokemonDetail>
+              <PokePhoto>
+                <PokeOut src={getPokeDetails.sprites.other["official-artwork"].front_default}/>
+              </PokePhoto>
+            </PokeballDiv>
+          </DetalheCard>
+        </div>}
+    </>
   );
 }

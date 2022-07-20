@@ -16,8 +16,14 @@ import {
 import { types, colors } from "../../constants/types";
 import { useRequest } from "../../services/hooks/useRequest";
 import { BaseUrl } from "../../constants/baseUrl";
+import { useNavigate } from "react-router-dom";
+import { goToDetailsPage } from "../../routes/Coordinator";
+
+
 export default function CardPokemon({ poke, setMyPokes, myPokes }) {
+  const navigate = useNavigate()
   const getPoke = useRequest(`${BaseUrl}pokemon/${poke.name}`);
+ 
   const liberar = (poke) => {
     const newArray = myPokes.filter((item) => {
       if (item !== poke) {
@@ -26,6 +32,7 @@ export default function CardPokemon({ poke, setMyPokes, myPokes }) {
     });
     setMyPokes(newArray);
   };
+
   return (
     <>
       {getPoke && (
@@ -44,7 +51,7 @@ export default function CardPokemon({ poke, setMyPokes, myPokes }) {
               </ContainerTypes>
             </div>
             <div>
-              <DetalhesTitle>Detalhes</DetalhesTitle>
+              <DetalhesTitle  onClick={() => goToDetailsPage(navigate, getPoke.name)}>Detalhes</DetalhesTitle> 
             </div>
           </ContainerNomeTipo>
           <ContainerFotoBotão>

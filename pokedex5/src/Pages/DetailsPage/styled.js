@@ -6,7 +6,7 @@ import Montserrat from "../../assets/Fonts/Montserrat/static/Montserrat-Regular.
 export const DetalheCard = styled.div`
   width: 1389.14px;
   height: 663px;
-  background-color: #729f92;
+  background-color: ${(props) => props.color};
   border-radius: 37.8857px;
   margin: 0 auto;
   margin-top: 56px;
@@ -48,6 +48,11 @@ export const ImageBack = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const ImgDetails = styled.img`
+height: 250px;
+`
+
 export const StatusCard = styled.div`
   grid-area: 1/2/3/3;
   margin-top: 24px;
@@ -95,6 +100,7 @@ export const PokeLetra = styled.p`
   font-family: "Inter";
   font-weight: 700px;
   font-style: bold;
+  text-transform: capitalize;
 `;
 export const PokeId = styled.p`
   font-size: 16px;
@@ -134,6 +140,7 @@ export const Move = styled.div`
   border: dashed 1px rgba(0,0,0,0.14);
   border-radius: 12px;
   margin-bottom: 18px;
+  text-transform: capitalize;
 `
 export const DivMoves = styled.div`
 margin-top: 20px;

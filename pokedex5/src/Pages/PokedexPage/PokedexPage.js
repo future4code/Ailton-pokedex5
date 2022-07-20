@@ -11,7 +11,7 @@ export default function PokedexPage() {
   console.log(myPokes);
   return (
     <ContainerPokedex>
-      <Header />
+      <Header page={'pokedex'} />
       <div>
         <Title>Meus Pokémons</Title>
       </div>
