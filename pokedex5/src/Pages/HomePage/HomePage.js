@@ -1,31 +1,32 @@
-import React, {useState, useEffect, useContext} from 'react';
-import Header from '../../Components/Header/Header';
-import { Title } from '../../styleGeral';
-import CardPokemon from '../../Components/CardPokemon/CardPokemon';
-import { MainGeral } from '../../styleGeral';
-import { GlobalContext } from '../../Components/Global/GlobalContext';
-
-
+import React, { useState, useEffect, useContext } from "react";
+import Header from "../../Components/Header/Header";
+import { Title } from "../../styleGeral";
+import CardPokemon from "../../Components/CardPokemon/CardPokemon";
+import { MainGeral } from "../../styleGeral";
+import { GlobalContext } from "../../Components/Global/GlobalContext";
 
 export default function HomePage() {
-  const [pokemon, setPokemon]= useState([]);
-  const{getPokemon}=useContext(GlobalContext);
- 
-useEffect(()=>{
-  getPokemon(setPokemon)
-}, [])
-  
+  const { getPokeList, setMyPokes, myPokes } = useContext(GlobalContext);
+  console.log(myPokes);
   return (
     <div>
-      <Header/>
+      <Header />
       <div>
-      <Title>Todos os Pokémons</Title>
+        <Title>Todos os Pokémons</Title>
       </div>
       <MainGeral>
-          <CardPokemon/>
-          <CardPokemon/>
-          <CardPokemon/>
+        {getPokeList &&
+          getPokeList.results?.map((item, index) => {
+            return (
+              <CardPokemon
+                key={index + 1}
+                poke={item}
+                setMyPokes={setMyPokes}
+                myPokes={myPokes}
+              />
+            );
+          })}
       </MainGeral>
     </div>
-  )
+  );
 }

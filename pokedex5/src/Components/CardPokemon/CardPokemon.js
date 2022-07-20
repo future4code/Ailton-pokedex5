@@ -1,32 +1,73 @@
-import React from 'react';
-import { ContainerCardPokemon, ContainerNomeTipo, ContainerFotoBotão,
-   ContainerTypes, TypeImg, IdPokemon,PokemonName,
-   DetalhesTitle, ButtonCapturar, ImagemPoke,
-   ContainerImgPoke, MainHome  } from './styled';
-import poison from "../../assets/types/poison.png";
-
-export default function CardPokemon() {
+import React from "react";
+import {
+  ContainerCardPokemon,
+  ContainerNomeTipo,
+  ContainerFotoBotão,
+  ContainerTypes,
+  TypeImg,
+  IdPokemon,
+  PokemonName,
+  DetalhesTitle,
+  ButtonCapturar,
+  ImagemPoke,
+  ContainerImgPoke,
+  MainHome,
+} from "./styled";
+import { types, colors } from "../../constants/types";
+import { useRequest } from "../../services/hooks/useRequest";
+import { BaseUrl } from "../../constants/baseUrl";
+export default function CardPokemon({ poke, setMyPokes, myPokes }) {
+  const getPoke = useRequest(`${BaseUrl}pokemon/${poke.name}`);
+  const liberar = (poke) => {
+    const newArray = myPokes.filter((item) => {
+      if (item !== poke) {
+        return item;
+      }
+    });
+    setMyPokes(newArray);
+  };
   return (
-    <ContainerCardPokemon>
-      <ContainerNomeTipo>
-        <div>
-        <IdPokemon>#01</IdPokemon>
-        <PokemonName >Bulbasaur</PokemonName>
-        <ContainerTypes>
-          <TypeImg src={poison} />
-          <TypeImg src={poison} />
-        </ContainerTypes>
-        </div>
-        <div>
-        <DetalhesTitle>Detalhes</DetalhesTitle>
-        </div>
-      </ContainerNomeTipo>
-      <ContainerFotoBotão>
-        <ContainerImgPoke>
-        <ImagemPoke src={"https://cdn.discordapp.com/attachments/984825626898882573/999038912553046047/unknown.png"}/>
-        </ContainerImgPoke>
-        <ButtonCapturar>Capturar!</ButtonCapturar>
-        </ContainerFotoBotão>
-    </ContainerCardPokemon>
-  )
+    <>
+      {getPoke && (
+        <ContainerCardPokemon color={colors[getPoke.types[0].type.name]}>
+          {console.log(colors[getPoke.types[0].type.name])}
+          <ContainerNomeTipo>
+            <div>
+              <IdPokemon>{`#${getPoke.id}`}</IdPokemon>
+              <PokemonName>{getPoke.name}</PokemonName>
+              <ContainerTypes>
+                {getPoke.types?.map((item) => {
+                  return (
+                    <TypeImg key={item.type.name} src={types[item.type.name]} />
+                  );
+                })}
+              </ContainerTypes>
+            </div>
+            <div>
+              <DetalhesTitle>Detalhes</DetalhesTitle>
+            </div>
+          </ContainerNomeTipo>
+          <ContainerFotoBotão>
+            <ContainerImgPoke>
+              <ImagemPoke
+                src={getPoke.sprites.other["official-artwork"].front_default}
+              />
+            </ContainerImgPoke>
+            {myPokes.includes(getPoke.name) || (
+              <ButtonCapturar
+                onClick={() => setMyPokes([...myPokes, getPoke.name])}
+              >
+                Capturar!
+              </ButtonCapturar>
+            )}
+            {myPokes.includes(getPoke.name) && (
+              <ButtonCapturar onClick={() => liberar(getPoke.name)}>
+                Liberar!
+              </ButtonCapturar>
+            )}
+          </ContainerFotoBotão>
+        </ContainerCardPokemon>
+      )}
+    </>
+  );
 }
