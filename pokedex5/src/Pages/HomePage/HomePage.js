@@ -8,13 +8,13 @@ import { GlobalContext } from '../../Components/Global/GlobalContext';
 
 
 export default function HomePage() {
-  const [pokemon, setPokemon]= useState([]);
-  const{getPokemon}=useContext(GlobalContext);
+//   const [pokemon, setPokemon]= useState([]);
+//   const{useRequest}=useContext(GlobalContext);
  
-useEffect(()=>{
-  getPokemon(setPokemon)
-}, [])
-  
+// useEffect(()=>{
+// }, [])
+// useRequest(setPokemon,"pokemon/?offset=20&limit=20")
+//   console.log(pokemon)
   return (
     <div>
       <Header/>
