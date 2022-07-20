@@ -19,12 +19,17 @@ import {
   DivMoves,
   Move,
   ImgDetails,
+  ContainerStates,
+  StatsName,
+  StatsValue
 } from "./styled";
 import Poison from "../../assets/types/poison.png";
 import { useParams } from "react-router-dom";
 import { useRequest } from "../../services/hooks/useRequest";
 import { BaseUrl } from "../../constants/baseUrl";
 import { types, colors } from "../../constants/types";
+import {ProgressBar} from "../../Components/ProgressBar/ProgressBar";
+import { Stats } from "../../constants/types";
 
 
 
@@ -52,6 +57,17 @@ export default function DetailsPage() {
             </ImageBack>
             <StatusCard>
               <TitleInfo>Base Stats</TitleInfo>
+              {getPokeDetails.stats?.map((item, index)=>{
+                return (
+                  <ContainerStates key={index}>
+                    <StatsName>{Stats[index]}</StatsName>
+                    <StatsValue>{item.base_stat}</StatsValue>
+                  <ProgressBar item={item}/>
+                 
+                  </ContainerStates>
+                )
+              })}
+              
             </StatusCard>
             <PokeballDiv>
               <PokemonDetail>

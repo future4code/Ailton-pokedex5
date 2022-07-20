@@ -81,6 +81,7 @@ export const DetalhesTitle = styled.div`
 `;
 
 export const ButtonCapturar = styled.button`
+cursor: pointer;
   background-color: white;
   border-radius: 8px;
   border: none;

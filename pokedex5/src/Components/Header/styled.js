@@ -1,4 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import poppins from "../../assets/Fonts/Poppins/Poppins-Regular.ttf";
+import poppinsBold from "../../assets/Fonts/Poppins/Poppins-Bold.ttf"
 
 export const HeaderContainer = styled.div`
 width: 100%;
@@ -6,6 +8,14 @@ height: 160px;
 display: flex;
 justify-content: space-between;
 background-color: white;
+@font-face {
+    font-family:"poppins" ;
+    src: url(${poppins});
+}
+@font-face {
+    font-family:"poppinsBold" ;
+    src: url(${poppinsBold});
+}
 `
 
 export const DivHeader = styled.div`
@@ -21,6 +31,7 @@ height: 113px;
 `
 
 export const ButtonHeader = styled.button`
+cursor: pointer;
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -31,14 +42,32 @@ height: 74px;
 background: #33A4F5;
 border-radius: 8px;
 border: none;
+font-family:"poppinsBold";
 font-style: normal;
 font-weight: 700;
 font-size: 20px;
 line-height: 36px;
 color: white;
 `
+export const ButtonExcluir = styled.button`
+cursor: pointer;
+width:226px;
+height:57px;
+font-family:"poppins";
+padding:16.5px 40px;
+font-size:16px;
+font-weight:400;
+line-height:24px;
+color:white;
+background-color:#ff6262;
+border:none;
+border-radius:8px;
+`
+
+
 export const Voltar = styled.p`
-font-family: "Poppins";
+cursor: pointer;
+font-family: "poppins";
 font-style: normal;
 font-weight: 700;
 font-size: 24px;
