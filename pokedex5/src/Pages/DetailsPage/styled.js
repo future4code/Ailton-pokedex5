@@ -118,6 +118,7 @@ export const TitleInfo = styled.p`
   font-family: "Inter";
   font-size: 24px;
   line-height: 29.05px;
+  margin-bottom:15px;
 `;
 export const PokePhoto = styled.div`
   display: flex;
@@ -147,4 +148,33 @@ margin-top: 20px;
 flex-grow: 1;
 overflow: auto;
 font-family: "Montserrat";
+`
+
+export const ContainerStates = styled.div`
+display:flex;
+/* gap:15px;
+align-items:center;
+justify-content:center; */
+margin-bottom:15px;
+`
+export const StatsName = styled.p`
+display:flex;
+justify-content:end;
+align-items:center;
+min-width:72px;
+height:33px;
+font-size:16px;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+color: #737373;
+`
+
+export const StatsValue = styled.p`
+display:flex;
+justify-content:end;
+align-items:center;
+font-size:16px;
+min-width:47px;
+height:33px;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+color:#404040;
 `
