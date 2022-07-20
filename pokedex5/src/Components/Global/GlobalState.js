@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 import { useRequest } from "../../services/hooks/useRequest";
 import { BaseUrl } from "../../constants/baseUrl";
 
 export default function GlobalState(props) {
   const Provider = GlobalContext.Provider;
-  const [pokeId, setPokeId] = useState([]);
-  const [pokeList, setPokeList] = useState([]);
-  const getPoke = useRequest(`${BaseUrl}pokemon/?offset=0&limit=20`);
-  console.log(getPoke);
+  const [myPokes, setMyPokes] = useState("");
+
+  if (myPokes === "") {
+    const getLocal = JSON.parse(localStorage.getItem("myPokes"));
+    setMyPokes(getLocal ? getLocal : []);
+  }
+
+  useEffect(()=>{
+    localStorage.setItem("myPokes", JSON.stringify(myPokes));
+  },[myPokes])
+  
+
+  console.log(myPokes);
+  const getPokeList = useRequest(`${BaseUrl}pokemon/?offset=0&limit=30`);
   const values = {
-    pokeId,
-    setPokeId,
-    pokeList,
+    myPokes,
+    setMyPokes,
+    getPokeList,    
   };
   return <Provider value={values}>{props.children}</Provider>;
 }

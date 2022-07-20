@@ -7,7 +7,7 @@ export const useRequest = (url) => {
     axios
       .get(url)
       .then((res) => {
-        setData(res.data.results);
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err.response);
