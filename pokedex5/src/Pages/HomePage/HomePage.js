@@ -3,13 +3,13 @@ import Header from '../../Components/Header/Header';
 import { Title } from '../../styleGeral';
 import CardPokemon from '../../Components/CardPokemon/CardPokemon';
 import { MainGeral } from '../../styleGeral';
-import Context from "../../createContext/createContext"
+import { GlobalContext } from '../../Components/Global/GlobalContext';
 
 
 
 export default function HomePage() {
   const [pokemon, setPokemon]= useState([]);
-  const{getPokemon}=useContext(Context);
+  const{getPokemon}=useContext(GlobalContext);
  
 useEffect(()=>{
   getPokemon(setPokemon)

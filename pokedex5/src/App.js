@@ -1,23 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Router } from "./routes/Router";
 import { DivApp } from "./styleGeral";
-import Context from "./createContext/createContext";
-import { getPokemon } from "./services/requests";
+import GlobalState from "./Components/Global/GlobalState";
+
 
 function App() {
-  const [pokeId, setPokeId] = useState([]);
-  const Provider = Context.Provider;
-  const values = {
-    pokeId,
-    setPokeId,
-    getPokemon
-  };
 
+ 
   return (
     <DivApp>
-      <Provider value={values}>
+      <GlobalState>
         <Router />
-      </Provider>
+      </GlobalState>
     </DivApp>
   );
 }
