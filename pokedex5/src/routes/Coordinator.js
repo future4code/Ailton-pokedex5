@@ -3,6 +3,9 @@
 export const goToHomePage = (navigate)=>{
     navigate("/")
 };
+export const goToHomePageId = (navigate, id)=>{
+    navigate(`/page/${id}`)
+};
 
 export const goToDetailsPage = (navigate, id)=>{
     navigate(`/details/${id}`)
