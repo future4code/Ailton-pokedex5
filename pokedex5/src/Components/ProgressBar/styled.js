@@ -14,6 +14,7 @@ height:12px;
 max-height:12px;
 min-height:12px;
 border-radius:4px;
+border: 0.3px solid rgba(0, 0, 0, 0.2);
 `
 export const Progress = styled(BaseBox)`
 background:${({item}) => item.base_stat <= 29? "#f34444":

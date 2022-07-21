@@ -5,12 +5,14 @@ import { MainGeral } from "../../styleGeral";
 import CardPokemon from "../../Components/CardPokemon/CardPokemon";
 import { ContainerPokedex } from "./styled";
 import { GlobalContext } from "../../Components/Global/GlobalContext";
+import Alert from "../../Components/Alert/Alert";
 
 export default function PokedexPage() {
-  const { myPokes, setMyPokes } = useContext(GlobalContext);
+  const { myPokes, setMyPokes, setAlert, setSelect } = useContext(GlobalContext);
   console.log(myPokes);
   return (
     <ContainerPokedex>
+      <Alert/>
       <Header page={'pokedex'} />
       <div>
         <Title>Meus Pokémons</Title>
@@ -18,7 +20,13 @@ export default function PokedexPage() {
       <MainGeral>
         {myPokes &&
           myPokes?.map((item) => {
-            return <CardPokemon poke={{name: item}} myPokes={myPokes} setMyPokes={setMyPokes}/>;
+            return <CardPokemon
+              setAlert={setAlert}
+              setSelect={setSelect}
+              poke={{ name: item }}
+              myPokes={myPokes}
+              setMyPokes={setMyPokes}
+            />;
           })}
       </MainGeral>
     </ContainerPokedex>

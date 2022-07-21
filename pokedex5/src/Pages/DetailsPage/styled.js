@@ -2,6 +2,7 @@ import styled from "styled-components";
 import pokeball from "../../assets/pokeball.png";
 import Inter from "../../assets/Fonts/Inter/static/Inter-ExtraBold.ttf";
 import Montserrat from "../../assets/Fonts/Montserrat/static/Montserrat-Regular.ttf"
+import Back from '../../assets/BackDetail.png'
 
 export const DetalheCard = styled.div`
   width: 1389.14px;
@@ -23,6 +24,16 @@ export const DetalheCard = styled.div`
     src: url(${Montserrat});
   }
 `;
+
+export const ContainerDetails = styled.div`
+background-image: url(${Back});
+background-position: top center;
+background-size: 1235px 1170px;
+background-repeat: no-repeat;
+top:50px;
+`
+
+
 export const ImageFront = styled.div`
   grid-area: 1/1/2/2;
   margin-top: 24px;
@@ -63,6 +74,8 @@ export const StatusCard = styled.div`
   font-family: "Inter";
   font-weight: 800;
 `;
+
+
 export const PokeballDiv = styled.div`
   grid-area: 1/3/3/5;
   grid-template-columns: repeat(2, 1fr);
@@ -155,8 +168,14 @@ display:flex;
 /* gap:15px;
 align-items:center;
 justify-content:center; */
-margin-bottom:15px;
+/* margin-bottom:15px; */
+border-top:  0.01px solid rgba(0, 0, 0, 0.1);
 `
+
+export const ContainerTotal = styled(ContainerStates)`
+border-bottom:  0.01px solid rgba(0, 0, 0, 0.1);
+`
+
 export const StatsName = styled.p`
 display:flex;
 justify-content:end;
