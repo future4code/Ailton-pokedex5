@@ -20,9 +20,9 @@ import { useNavigate } from "react-router-dom";
 import { goToDetailsPage } from "../../routes/Coordinator";
 
 
-export default function CardPokemon({ poke, setMyPokes, myPokes, setAlert, setSelect }) {
+export default function CardPokemon({ poke, setMyPokes, myPokes, setAlert, setSelect, setLoading }) {
   const navigate = useNavigate()
-  const getPoke = useRequest(`${BaseUrl}pokemon/${poke.name}`);
+  const getPoke = useRequest(`${BaseUrl}pokemon/${poke.name}`, setLoading);
 
   const liberar = (poke) => {
     const newArray = myPokes.filter((item) => {

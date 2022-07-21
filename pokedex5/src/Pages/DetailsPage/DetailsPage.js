@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Header from "../../Components/Header/Header";
-import { Title } from "../../styleGeral";
+import { DivErro, Title } from "../../styleGeral";
 import {
   TypeImg,
   PokeballDiv,
@@ -38,23 +38,27 @@ import { goErrorPage, goToHomePage } from "../../routes/Coordinator";
 export default function DetailsPage() {
   const params = useParams()
   const navigate = useNavigate()
-  const getPokeDetails = useRequest(`${BaseUrl}pokemon/${params.id}`)
+  const { setLoading, loading} = useContext(GlobalContext);
 
-const {getPokeList} = useContext(GlobalContext)
+  const getPokeDetails = useRequest(`${BaseUrl}pokemon/${params.id}`, setLoading)
+
+
 
 // useEffect (() => {
 //   getPokeList && (!getPokeList.includes(params.id) && goToHomePage(navigate))
 // }, []) 
   return (
-    <>
-
-      {getPokeDetails &&
+   
         <ContainerDetails>
           <Alert />
           <Header page={'details'} />
+
           <div>
+
             <Title>Detalhes</Title>
           </div>
+          {loading && <DivErro/>}
+      {!loading && getPokeDetails &&
           <DetalheCard color={colors[getPokeDetails.types[0].type.name]}>
             <ImageFront>
               <ImgDetails src={getPokeDetails.sprites.front_default} />
@@ -111,7 +115,8 @@ const {getPokeList} = useContext(GlobalContext)
               </PokePhoto>
             </PokeballDiv>
           </DetalheCard>
-        </ContainerDetails>}
-    </>
+}
+        </ContainerDetails>
+
   );
 }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import Header from "../../Components/Header/Header";
-import { Title } from "../../styleGeral";
+import { DivErro, Title } from "../../styleGeral";
 import CardPokemon from "../../Components/CardPokemon/CardPokemon";
 import { MainGeral } from "../../styleGeral";
 import { GlobalContext } from "../../Components/Global/GlobalContext";
-import { DivNav } from "./styled";
+import { DivNav, PAtual, PNav } from "./styled";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   goErrorPage,
@@ -22,6 +22,8 @@ export default function HomePage() {
     setPagination,
     pagination,
     totalPages,
+    loading, 
+    setLoading
   } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -56,35 +58,41 @@ export default function HomePage() {
         <Title>Todos os Pokémons</Title>
       </div>
 
+        {loading && <DivErro/>}
+        {!loading && getPokeList &&
+        <>
       <MainGeral>
-        {getPokeList &&
-          getPokeList.results?.map((item, index) => {
+          {getPokeList.results?.map((item, index) => {
             return (
               <CardPokemon
                 key={index + 1}
                 poke={item}
                 setMyPokes={setMyPokes}
                 myPokes={myPokes}
+                setLoading={setLoading}
               />
             );
           })}
+          
       </MainGeral>
       <DivNav>
         {pagination - 2 >= 0 && (
-          <p onClick={() => setPagination(pagination - 2)}>{pagination - 1}</p>
+          <PNav onClick={() => setPagination(pagination - 2)}>{pagination - 1}</PNav>
         )}
         {pagination - 1 >= 0 && (
-          <p onClick={() => setPagination(pagination - 1)}>{pagination}</p>
+          <PNav onClick={() => setPagination(pagination - 1)}>{pagination}</PNav>
         )}
-        <p>{pagination + 1}</p>
+        <PAtual>{pagination + 1}</PAtual>
         {pagination + 1 <= totalPages && (
-          <p onClick={() => setPagination(pagination + 1)}>{pagination + 2}</p>
+          <PNav onClick={() => setPagination(pagination + 1)}>{pagination + 2}</PNav>
         )}
         {pagination + 2 <= totalPages && (
-          <p onClick={() => setPagination(pagination + 2)}>{pagination + 3}</p>
+          <PNav onClick={() => setPagination(pagination + 2)}>{pagination + 3}</PNav>
         )}
         <p></p>
       </DivNav>
+      </>
+}
     </div>
   );
 }

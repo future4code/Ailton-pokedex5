@@ -16,5 +16,5 @@ export const goToPokedex = (navigate)=>{
 };
 
 export const goErrorPage = (navigate) => {
-    navigate("/*")
+    navigate("/notFound")
 }
