@@ -16,10 +16,17 @@ line-height: 72px;
 margin-top: 60px;
 margin-left: 40px;
 margin-bottom: 55px;
+@media screen and (max-width: 910px) {
+    font-size: 40px;
+}
 `
 export const MainGeral = styled.main`
 display: grid;
 grid-template-columns: repeat(auto-fill, 460px);
 justify-content: center;
 height: 100%;
+@media screen and (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, 460px);
+
+}
 `

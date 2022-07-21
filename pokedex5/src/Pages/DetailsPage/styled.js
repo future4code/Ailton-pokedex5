@@ -23,6 +23,15 @@ export const DetalheCard = styled.div`
     font-family: "Montserrat";
     src: url(${Montserrat});
   }
+  @media screen and (min-width: 1180px) and (max-width: 1440px) {
+    transform: scale(0.8);
+    width: 1200px;
+  }
+  @media screen and (min-width: 800px) and (max-width: 1179px) {
+    transform: scale(0.8);
+    /* width: 1200px; */
+    grid-auto-flow: row;
+  }
 `;
 
 export const ContainerDetails = styled.div`
@@ -161,6 +170,18 @@ margin-top: 20px;
 flex-grow: 1;
 overflow: auto;
 font-family: "Montserrat";
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 `
 
 export const ContainerStates = styled.div`

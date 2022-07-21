@@ -16,6 +16,10 @@ background-color: white;
     font-family:"poppinsBold" ;
     src: url(${poppinsBold});
 }
+@media screen and (max-width: 910px)  {
+    flex-direction: column;
+    align-items: center;
+}
 `
 
 export const DivHeader = styled.div`
@@ -24,6 +28,9 @@ display: flex;
 align-items: center;
 justify-content: center;
 width: 200px;
+@media screen and (max-width: 910px)  {
+   width: 400px;
+}
 `
 
 export const ImgHeader = styled.img` 
@@ -76,6 +83,9 @@ font-size: 24px;
 line-height: 36px;
 text-decoration-line: underline;
 color: #1a1a1a;
+@media screen and (max-width: 910px) {
+    width: 300px;
+}
 `
 export const VetorImg = styled.img`
 height: 14.58px;
