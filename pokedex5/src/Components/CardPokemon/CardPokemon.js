@@ -39,7 +39,6 @@ export default function CardPokemon({ poke, setMyPokes, myPokes, setAlert, setSe
     <>
       {getPoke && (
         <ContainerCardPokemon color={colors[getPoke.types[0].type.name]}>
-          {console.log(colors[getPoke.types[0].type.name])}
           <ContainerNomeTipo>
             <div>
               <IdPokemon>{`#${getPoke.id}`}</IdPokemon>

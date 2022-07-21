@@ -9,7 +9,6 @@ import Alert from "../../Components/Alert/Alert";
 
 export default function PokedexPage() {
   const { myPokes, setMyPokes, setAlert, setSelect } = useContext(GlobalContext);
-  console.log(myPokes);
   return (
     <ContainerPokedex>
       <Alert/>
