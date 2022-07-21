@@ -76,6 +76,7 @@ export const PokemonName = styled.p`
 `;
 export const DetalhesTitle = styled.div`
   font-family: "PoppinsBold";
+  cursor: pointer;
   color: white;
   font-size: 16px;
   font-weight: 700;

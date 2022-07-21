@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Header from "../../Components/Header/Header";
-import { Title } from "../../styleGeral";
+import { DivErro, Title } from "../../styleGeral";
 import { MainGeral } from "../../styleGeral";
 import CardPokemon from "../../Components/CardPokemon/CardPokemon";
 import { ContainerPokedex } from "./styled";
@@ -8,7 +8,7 @@ import { GlobalContext } from "../../Components/Global/GlobalContext";
 import Alert from "../../Components/Alert/Alert";
 
 export default function PokedexPage() {
-  const { myPokes, setMyPokes, setAlert, setSelect } = useContext(GlobalContext);
+  const { myPokes, setMyPokes, setAlert, setSelect, setLoading, loading } = useContext(GlobalContext);
   return (
     <ContainerPokedex>
       <Alert/>
@@ -16,18 +16,21 @@ export default function PokedexPage() {
       <div>
         <Title>Meus Pokémons</Title>
       </div>
+        {loading && <DivErro/>}
+        {!loading && myPokes &&
       <MainGeral>
-        {myPokes &&
-          myPokes?.map((item) => {
+          {myPokes?.map((item) => {
             return <CardPokemon
               setAlert={setAlert}
               setSelect={setSelect}
               poke={{ name: item }}
               myPokes={myPokes}
               setMyPokes={setMyPokes}
+              setLoading={setLoading}
             />;
           })}
       </MainGeral>
+}
     </ContainerPokedex>
   );
 }
