@@ -28,6 +28,9 @@ export const ContainerCardPokemon = styled.div`
     font-family: "PoppinsBold";
     src: url(${PoppinsBold});
   }
+  @media screen and (max-width: 480px) {
+    transform: scale(0.8);
+  }
 `;
 export const ContainerNomeTipo = styled.div`
   display: flex;

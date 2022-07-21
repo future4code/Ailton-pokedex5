@@ -42,9 +42,9 @@ export default function DetailsPage() {
 
 const {getPokeList} = useContext(GlobalContext)
 
-useEffect (() => {
-  getPokeList && (!getPokeList.includes(params.id) && goToHomePage(navigate))
-}, []) 
+// useEffect (() => {
+//   getPokeList && (!getPokeList.includes(params.id) && goToHomePage(navigate))
+// }, []) 
   return (
     <>
 
