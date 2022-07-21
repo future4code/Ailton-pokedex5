@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "../../Components/Header/Header";
 import { Title } from "../../styleGeral";
 import {
@@ -25,25 +25,26 @@ import {
   ContainerDetails,
   ContainerTotal
 } from "./styled";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRequest } from "../../services/hooks/useRequest";
 import { BaseUrl } from "../../constants/baseUrl";
 import { types, colors } from "../../constants/types";
 import { ProgressBar } from "../../Components/ProgressBar/ProgressBar";
 import { Stats } from "../../constants/types";
 import Alert from "../../Components/Alert/Alert";
+import { GlobalContext } from "../../Components/Global/GlobalContext";
+import { goErrorPage, goToHomePage } from "../../routes/Coordinator";
 
 export default function DetailsPage() {
   const params = useParams()
+  const navigate = useNavigate()
   const getPokeDetails = useRequest(`${BaseUrl}pokemon/${params.id}`)
-  const [total, setTotal] = useState(0)
 
-  // const soma = getPokeDetails.stats.filter((item) => {
-  //   return item.base_stat
-  // }).reduce((a, b) => a + b, 0)
-  console.log(getPokeDetails)
-  // console.log(soma)
+const {getPokeList} = useContext(GlobalContext)
 
+useEffect (() => {
+  getPokeList && (!getPokeList.includes(params.id) && goToHomePage(navigate))
+}, []) 
   return (
     <>
 
@@ -77,7 +78,7 @@ export default function DetailsPage() {
                   Total
                 </StatsName>
                 <StatsValue>
-
+                {getPokeDetails.stats.reduce((total, item)=>{ return total + item.base_stat }, 0)}
                 </StatsValue>
               </ContainerTotal>
             </StatusCard>

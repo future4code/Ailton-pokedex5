@@ -11,3 +11,7 @@ export const goToDetailsPage = (navigate, id)=>{
 export const goToPokedex = (navigate)=>{
     navigate("/pokedex")
 };
+
+export const goErrorPage = (navigate) => {
+    navigate("/*")
+}
