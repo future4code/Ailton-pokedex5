@@ -18,11 +18,8 @@ margin-left: 40px;
 margin-bottom: 55px;
 `
 export const MainGeral = styled.main`
-display:flex;
-flex-wrap: wrap;
-justify-content:center;
-align-items: flex-start; 
-margin: 0 auto;
- width:100%;
-height:100%;
+display: grid;
+grid-template-columns: repeat(auto-fill, 460px);
+justify-content: center;
+height: 100%;
 `

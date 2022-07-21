@@ -6,6 +6,9 @@ import { BaseUrl } from "../../constants/baseUrl";
 export default function GlobalState(props) {
   const Provider = GlobalContext.Provider;
   const [myPokes, setMyPokes] = useState("");
+  const [alert, setAlert] = useState(false)
+  const [select, setSelect] = useState('')
+
 
   if (myPokes === "") {
     const getLocal = JSON.parse(localStorage.getItem("myPokes"));
@@ -23,6 +26,10 @@ export default function GlobalState(props) {
     myPokes,
     setMyPokes,
     getPokeList,    
+    alert, 
+    setAlert,
+    select,
+    setSelect
   };
   return <Provider value={values}>{props.children}</Provider>;
 }

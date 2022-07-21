@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Header from "../../Components/Header/Header";
 import { Title } from "../../styleGeral";
 import {
@@ -21,29 +21,35 @@ import {
   ImgDetails,
   ContainerStates,
   StatsName,
-  StatsValue
+  StatsValue,
+  ContainerDetails,
+  ContainerTotal
 } from "./styled";
-import Poison from "../../assets/types/poison.png";
 import { useParams } from "react-router-dom";
 import { useRequest } from "../../services/hooks/useRequest";
 import { BaseUrl } from "../../constants/baseUrl";
 import { types, colors } from "../../constants/types";
-import {ProgressBar} from "../../Components/ProgressBar/ProgressBar";
+import { ProgressBar } from "../../Components/ProgressBar/ProgressBar";
 import { Stats } from "../../constants/types";
-
-
+import Alert from "../../Components/Alert/Alert";
 
 export default function DetailsPage() {
-
   const params = useParams()
-
   const getPokeDetails = useRequest(`${BaseUrl}pokemon/${params.id}`)
+  const [total, setTotal] = useState(0)
+
+  // const soma = getPokeDetails.stats.filter((item) => {
+  //   return item.base_stat
+  // }).reduce((a, b) => a + b, 0)
   console.log(getPokeDetails)
+  // console.log(soma)
 
   return (
     <>
+
       {getPokeDetails &&
-        <div>
+        <ContainerDetails>
+          <Alert />
           <Header page={'details'} />
           <div>
             <Title>Detalhes</Title>
@@ -57,17 +63,23 @@ export default function DetailsPage() {
             </ImageBack>
             <StatusCard>
               <TitleInfo>Base Stats</TitleInfo>
-              {getPokeDetails.stats?.map((item, index)=>{
+              {getPokeDetails.stats?.map((item, index) => {
                 return (
                   <ContainerStates key={index}>
                     <StatsName>{Stats[index]}</StatsName>
                     <StatsValue>{item.base_stat}</StatsValue>
-                  <ProgressBar item={item}/>
-                 
+                    <ProgressBar item={item} />
                   </ContainerStates>
                 )
               })}
-              
+              <ContainerTotal>
+                <StatsName>
+                  Total
+                </StatsName>
+                <StatsValue>
+
+                </StatsValue>
+              </ContainerTotal>
             </StatusCard>
             <PokeballDiv>
               <PokemonDetail>
@@ -94,11 +106,11 @@ export default function DetailsPage() {
                 </PokeMoves>
               </PokemonDetail>
               <PokePhoto>
-                <PokeOut src={getPokeDetails.sprites.other["official-artwork"].front_default}/>
+                <PokeOut src={getPokeDetails.sprites.other["official-artwork"].front_default} />
               </PokePhoto>
             </PokeballDiv>
           </DetalheCard>
-        </div>}
+        </ContainerDetails>}
     </>
   );
 }

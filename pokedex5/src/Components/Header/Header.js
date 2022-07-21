@@ -9,6 +9,7 @@ import {
   HeaderContainer,
   ImgHeader,
   ButtonExcluir,
+  ButtonCapturar,
 } from "./styled";
 import { Title } from "../../styleGeral";
 import { useNavigate, useParams } from "react-router-dom";
@@ -21,7 +22,7 @@ import { GlobalContext } from "../Global/GlobalContext";
 
 export default function Header({ page }) {
   const navigate = useNavigate();
-  const { setMyPokes, myPokes } = useContext(GlobalContext);
+  const { setMyPokes, myPokes, setAlert, setSelect } = useContext(GlobalContext);
   const Params = useParams();
 
   const liberar = (poke) => {
@@ -31,6 +32,8 @@ export default function Header({ page }) {
       }
     });
     setMyPokes(newArray);
+    setAlert(true)
+    setSelect('remove')
   };
   return (
     <HeaderContainer>
@@ -52,10 +55,14 @@ export default function Header({ page }) {
           </ButtonHeader>
         )}
         {page === "details" && (myPokes.includes(Params.id.toLowerCase()) || (
-          <ButtonHeader onClick={()=>setMyPokes([...myPokes, Params.id.toLowerCase()])}>Capturar!</ButtonHeader>
+          <ButtonCapturar onClick={() => {
+            setMyPokes([...myPokes, Params.id.toLowerCase()])
+            setAlert(true)
+            setSelect('catch')
+          }}>Capturar Pokémon!</ButtonCapturar>
         ))}
         {page === "details" && (myPokes.includes(Params.id.toLowerCase()) && (
-          <ButtonExcluir onClick={()=>liberar(Params.id.toLowerCase())}>Liberar Pokémon</ButtonExcluir>
+          <ButtonExcluir onClick={() => liberar(Params.id.toLowerCase())}>Liberar Pokémon</ButtonExcluir>
         ))}
       </DivHeader>
     </HeaderContainer>

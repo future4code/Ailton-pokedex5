@@ -54,7 +54,6 @@ cursor: pointer;
 width:226px;
 height:57px;
 font-family:"poppins";
-padding:16.5px 40px;
 font-size:16px;
 font-weight:400;
 line-height:24px;
@@ -64,6 +63,9 @@ border:none;
 border-radius:8px;
 `
 
+export const ButtonCapturar = styled(ButtonExcluir)`
+background-color:  #33A4F5;
+`
 
 export const Voltar = styled.p`
 cursor: pointer;
