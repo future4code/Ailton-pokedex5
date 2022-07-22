@@ -1,10 +1,9 @@
 import axios from "axios";
-import {useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
 
 export const useRequest = (url, loading, setError) => {
-    const [data,setData] = useState(undefined);
-   
+  const [data, setData] = useState(undefined);
+
   useEffect(() => {
     loading(true);
     axios
@@ -14,10 +13,10 @@ export const useRequest = (url, loading, setError) => {
         setData(res.data);
       })
       .catch((err) => {
-        loading(false)
-        setError && setError(err.response)
+        loading(false);
+        setError && setError(err.response);
         console.log(err.response);
       });
   }, [url]);
-  return data
+  return data;
 };

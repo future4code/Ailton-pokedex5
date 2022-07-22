@@ -20,8 +20,15 @@ import { useNavigate } from "react-router-dom";
 import { goToDetailsPage } from "../../routes/Coordinator";
 
 
-export default function CardPokemon({ poke, setMyPokes, myPokes, setAlert, setSelect, setLoading }) {
-  const navigate = useNavigate()
+export default function CardPokemon({
+  poke,
+  setMyPokes,
+  myPokes,
+  setAlert,
+  setSelect,
+  setLoading,
+}) {
+  const navigate = useNavigate();
   const getPoke = useRequest(`${BaseUrl}pokemon/${poke.name}`, setLoading);
 
   const liberar = (poke) => {
@@ -31,8 +38,8 @@ export default function CardPokemon({ poke, setMyPokes, myPokes, setAlert, setSe
       }
     });
     setMyPokes(newArray);
-    setAlert(true)
-    setSelect('remove')
+    setAlert(true);
+    setSelect("remove");
   };
 
   return (
@@ -52,7 +59,11 @@ export default function CardPokemon({ poke, setMyPokes, myPokes, setAlert, setSe
               </ContainerTypes>
             </div>
             <div>
-              <DetalhesTitle onClick={() => goToDetailsPage(navigate, getPoke.name)}>Detalhes</DetalhesTitle>
+              <DetalhesTitle
+                onClick={() => goToDetailsPage(navigate, getPoke.name)}
+              >
+                Detalhes
+              </DetalhesTitle>
             </div>
           </ContainerNomeTipo>
           <ContainerFotoBotão>
@@ -64,9 +75,9 @@ export default function CardPokemon({ poke, setMyPokes, myPokes, setAlert, setSe
             {myPokes.includes(getPoke.name) || (
               <ButtonCapturar
                 onClick={() => {
-                  setMyPokes([...myPokes, getPoke.name])
-                  setAlert(true)
-                  setSelect('catch')
+                  setMyPokes([...myPokes, getPoke.name]);
+                  setAlert(true);
+                  setSelect("catch");
                 }}
               >
                 Capturar!

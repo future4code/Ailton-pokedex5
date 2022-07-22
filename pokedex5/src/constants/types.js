@@ -57,8 +57,6 @@ export const colors = {
   rock: "#b8a038",
   steel: "#b8b8d0",
   water: "#71C3FF",
-}
+};
 
-export const Stats = [
-  'HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed' 
-]
+export const Stats = ["HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"];

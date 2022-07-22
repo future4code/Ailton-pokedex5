@@ -45,13 +45,9 @@ export default function DetailsPage() {
     setLoading,
     setError
   );
-  console.log(error)
-  if(error){
-    goErrorPage(navigate)
+  if (error) {
+    goErrorPage(navigate);
   }
-  // useEffect (() => {
-  //   getPokeList && (!getPokeList.includes(params.id) && goToHomePage(navigate))
-  // }, [])
   return (
     <ContainerDetails>
       <Alert />

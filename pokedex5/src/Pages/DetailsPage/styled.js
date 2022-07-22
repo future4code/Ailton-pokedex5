@@ -146,7 +146,7 @@ export const PokemonDetail = styled.div`
   font-family: "Inter";
   font-weight: 800;
   @media screen and (max-width: 1179px) {
-    margin: 0 auto;    
+    margin: 0 auto;
   }
 `;
 export const PokeMoves = styled.div`
@@ -163,9 +163,6 @@ export const PokeMoves = styled.div`
     width: 300px;
     border-radius: 12px;
     margin-top: 36px;
-    @media screen and (max-width: 690px) {
-      /* margin: 0 auto; */
-    }
   }
 `;
 export const PokeName = styled.div``;
@@ -207,12 +204,12 @@ export const PokeOut = styled.img`
   position: relative;
   top: -40%;
   width: 270px;
-  height: 270px;  
+  height: 270px;
   @media screen and (max-width: 690px) {
     width: 170px;
-    height: 170px;  
+    height: 170px;
     left: 80px;
-    top: -130px;    
+    top: -130px;
   }
 `;
 
