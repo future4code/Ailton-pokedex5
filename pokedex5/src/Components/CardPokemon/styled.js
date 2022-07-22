@@ -29,6 +29,7 @@ export const ContainerCardPokemon = styled.div`
     src: url(${PoppinsBold});
   }
   @media screen and (max-width: 480px) {
+    margin: 0 10px 10px 10px;
     transform: scale(0.8);
   }
 `;
@@ -85,7 +86,7 @@ export const DetalhesTitle = styled.div`
 `;
 
 export const ButtonCapturar = styled.button`
-cursor: pointer;
+  cursor: pointer;
   background-color: white;
   border-radius: 8px;
   border: none;

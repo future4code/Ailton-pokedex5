@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import pokeball from "../../assets/pokeball.png";
 import Inter from "../../assets/Fonts/Inter/static/Inter-ExtraBold.ttf";
-import Montserrat from "../../assets/Fonts/Montserrat/static/Montserrat-Regular.ttf"
-import Back from '../../assets/BackDetail.png'
+import Montserrat from "../../assets/Fonts/Montserrat/static/Montserrat-Regular.ttf";
+import Back from "../../assets/BackDetail.png";
 
 export const DetalheCard = styled.div`
   width: 1389.14px;
@@ -27,21 +27,30 @@ export const DetalheCard = styled.div`
     transform: scale(0.8);
     width: 1200px;
   }
-  @media screen and (min-width: 800px) and (max-width: 1179px) {
-    transform: scale(0.8);
-    /* width: 1200px; */
-    grid-auto-flow: row;
+  @media screen and (max-width: 1179px) {
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    width: 680px;
+    height: 860px;
+    padding: 20px;
+  }
+  @media screen and (max-width: 690px) {
+    width: 96vw;
+    margin-top: 100px;
+    height: auto;
+    display: flex;
+    gap: 20px;
+    flex-direction: column-reverse;
   }
 `;
 
 export const ContainerDetails = styled.div`
-background-image: url(${Back});
-background-position: top center;
-background-size: 1235px 1170px;
-background-repeat: no-repeat;
-top:50px;
-`
-
+  background-image: url(${Back});
+  background-position: top center;
+  background-size: 1235px 1170px;
+  background-repeat: no-repeat;
+  top: 50px;
+`;
 
 export const ImageFront = styled.div`
   grid-area: 1/1/2/2;
@@ -54,6 +63,14 @@ export const ImageFront = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 1179px) {
+    grid-area: 3/1/4/2;
+    width: 300px;
+    margin: 0 auto;
+    @media screen and (max-width: 690px) {
+      /* height: 300px; */
+    }
+  }
 `;
 export const ImageBack = styled.div`
   grid-area: 2/1/3/2;
@@ -67,11 +84,20 @@ export const ImageBack = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 1179px) {
+    grid-area: 3/2/4/3;
+    width: 300px;
+    margin: 0 auto;
+    @media screen and (max-width: 690px) {
+      /* grid-area: 4/1/5/2;
+    height: 300px; */
+    }
+  }
 `;
 
 export const ImgDetails = styled.img`
-height: 250px;
-`
+  height: 250px;
+`;
 
 export const StatusCard = styled.div`
   grid-area: 1/2/3/3;
@@ -82,8 +108,17 @@ export const StatusCard = styled.div`
   border-radius: 12px;
   font-family: "Inter";
   font-weight: 800;
+  @media screen and (max-width: 1179px) {
+    grid-area: 1/2/3/3;
+    height: 350px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 172px;
+    @media screen and (max-width: 690px) {
+      margin: 0 auto;
+    }
+  }
 `;
-
 
 export const PokeballDiv = styled.div`
   grid-area: 1/3/3/5;
@@ -93,6 +128,13 @@ export const PokeballDiv = styled.div`
   background-size: cover;
   background-position: right;
   display: grid;
+  @media screen and (max-width: 1179px) {
+    grid-area: 1/1/3/3;
+    background-position: center;
+    @media screen and (max-width: 690px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
 `;
 export const PokemonDetail = styled.div`
   grid-area: 1/1/3/2;
@@ -100,12 +142,15 @@ export const PokemonDetail = styled.div`
   margin-bottom: 26px;
   margin-top: 24px;
   display: grid;
-  grid-template-rows: repeat(4,1fr);
+  grid-template-rows: repeat(4, 1fr);
   font-family: "Inter";
   font-weight: 800;
+  @media screen and (max-width: 1179px) {
+    margin: 0 auto;    
+  }
 `;
 export const PokeMoves = styled.div`
-padding: 18px;
+  padding: 18px;
   background-color: white;
   border-radius: 8px;
   font-family: "Inter";
@@ -113,6 +158,15 @@ padding: 18px;
   grid-area: 2/1/5/2;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 1179px) {
+    height: 350px;
+    width: 300px;
+    border-radius: 12px;
+    margin-top: 36px;
+    @media screen and (max-width: 690px) {
+      /* margin: 0 auto; */
+    }
+  }
 `;
 export const PokeName = styled.div``;
 export const PokeLetra = styled.p`
@@ -140,18 +194,27 @@ export const TitleInfo = styled.p`
   font-family: "Inter";
   font-size: 24px;
   line-height: 29.05px;
-  margin-bottom:15px;
+  margin-bottom: 15px;
 `;
 export const PokePhoto = styled.div`
   display: flex;
   justify-content: center;
-`
+  @media screen and (max-width: 690px) {
+    grid-area: 1/1/2/2;
+  }
+`;
 export const PokeOut = styled.img`
-position: relative;
-top: -40%;
-width: 270px;
-height: 270px;
-`
+  position: relative;
+  top: -40%;
+  width: 270px;
+  height: 270px;  
+  @media screen and (max-width: 690px) {
+    width: 170px;
+    height: 170px;  
+    left: 80px;
+    top: -130px;    
+  }
+`;
 
 export const Move = styled.div`
   font-weight: 400;
@@ -160,61 +223,59 @@ export const Move = styled.div`
   padding: 10px;
   width: fit-content;
   background-color: #ececec;
-  border: dashed 1px rgba(0,0,0,0.14);
+  border: dashed 1px rgba(0, 0, 0, 0.14);
   border-radius: 12px;
   margin-bottom: 18px;
   text-transform: capitalize;
-`
+`;
 export const DivMoves = styled.div`
-margin-top: 20px;
-flex-grow: 1;
-overflow: auto;
-font-family: "Montserrat";
-::-webkit-scrollbar {
-  width: 3px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-`
+  margin-top: 20px;
+  flex-grow: 1;
+  overflow: auto;
+  font-family: "Montserrat";
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+`;
 
 export const ContainerStates = styled.div`
-display:flex;
-/* gap:15px;
-align-items:center;
-justify-content:center; */
-/* margin-bottom:15px; */
-border-top:  0.01px solid rgba(0, 0, 0, 0.1);
-`
+  display: flex;
+  border-top: 0.01px solid rgba(0, 0, 0, 0.1);
+`;
 
 export const ContainerTotal = styled(ContainerStates)`
-border-bottom:  0.01px solid rgba(0, 0, 0, 0.1);
-`
+  border-bottom: 0.01px solid rgba(0, 0, 0, 0.1);
+`;
 
 export const StatsName = styled.p`
-display:flex;
-justify-content:end;
-align-items:center;
-min-width:72px;
-height:33px;
-font-size:16px;
-font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-color: #737373;
-`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  min-width: 72px;
+  height: 33px;
+  font-size: 16px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: #737373;
+`;
 
 export const StatsValue = styled.p`
-display:flex;
-justify-content:end;
-align-items:center;
-font-size:16px;
-min-width:47px;
-height:33px;
-font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-color:#404040;
-`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 16px;
+  min-width: 47px;
+  height: 33px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: #404040;
+`;
