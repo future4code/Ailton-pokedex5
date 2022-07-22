@@ -19,7 +19,8 @@ margin-top: 60px;
 margin-left: 40px;
 margin-bottom: 55px;
 @media screen and (max-width: 910px) {
-    font-size: 40px;
+    margin-top: 40px;
+    font-size: 32px;
 }
 `
 export const MainGeral = styled.main`

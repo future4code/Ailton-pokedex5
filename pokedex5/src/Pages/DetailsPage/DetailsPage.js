@@ -23,7 +23,7 @@ import {
   StatsName,
   StatsValue,
   ContainerDetails,
-  ContainerTotal
+  ContainerTotal,
 } from "./styled";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRequest } from "../../services/hooks/useRequest";
@@ -33,90 +33,92 @@ import { ProgressBar } from "../../Components/ProgressBar/ProgressBar";
 import { Stats } from "../../constants/types";
 import Alert from "../../Components/Alert/Alert";
 import { GlobalContext } from "../../Components/Global/GlobalContext";
-import { goErrorPage, goToHomePage } from "../../routes/Coordinator";
+import { goErrorPage } from "../../routes/Coordinator";
 
 export default function DetailsPage() {
-  const params = useParams()
-  const navigate = useNavigate()
-  const { setLoading, loading} = useContext(GlobalContext);
+  const params = useParams();
+  const navigate = useNavigate();
+  const { setLoading, loading, setError, error } = useContext(GlobalContext);
 
-  const getPokeDetails = useRequest(`${BaseUrl}pokemon/${params.id}`, setLoading)
-
-
-
-// useEffect (() => {
-//   getPokeList && (!getPokeList.includes(params.id) && goToHomePage(navigate))
-// }, []) 
+  const getPokeDetails = useRequest(
+    `${BaseUrl}pokemon/${params.id}`,
+    setLoading,
+    setError
+  );
+  console.log(error)
+  if(error){
+    goErrorPage(navigate)
+  }
+  // useEffect (() => {
+  //   getPokeList && (!getPokeList.includes(params.id) && goToHomePage(navigate))
+  // }, [])
   return (
-   
-        <ContainerDetails>
-          <Alert />
-          <Header page={'details'} />
+    <ContainerDetails>
+      <Alert />
+      <Header page={"details"} />
 
-          <div>
-
-            <Title>Detalhes</Title>
-          </div>
-          {loading && <DivErro/>}
-      {!loading && getPokeDetails &&
-          <DetalheCard color={colors[getPokeDetails.types[0].type.name]}>
-            <ImageFront>
-              <ImgDetails src={getPokeDetails.sprites.front_default} />
-            </ImageFront>
-            <ImageBack>
-              <ImgDetails src={getPokeDetails.sprites.back_default} />
-            </ImageBack>
-            <StatusCard>
-              <TitleInfo>Base Stats</TitleInfo>
-              {getPokeDetails.stats?.map((item, index) => {
-                return (
-                  <ContainerStates key={index}>
-                    <StatsName>{Stats[index]}</StatsName>
-                    <StatsValue>{item.base_stat}</StatsValue>
-                    <ProgressBar item={item} />
-                  </ContainerStates>
-                )
-              })}
-              <ContainerTotal>
-                <StatsName>
-                  Total
-                </StatsName>
-                <StatsValue>
-                {getPokeDetails.stats.reduce((total, item)=>{ return total + item.base_stat }, 0)}
-                </StatsValue>
-              </ContainerTotal>
-            </StatusCard>
-            <PokeballDiv>
-              <PokemonDetail>
-                <PokeName>
-                  <PokeId>{`#${getPokeDetails.id}`}</PokeId>
-                  <PokeLetra>{getPokeDetails.name}</PokeLetra>
-                  {getPokeDetails.types?.map((item) => {
-                    return (
-                      <TypeImg key={item.type.name}
-                        src={types[item.type.name]} />
-                    )
+      <div>
+        <Title>Detalhes</Title>
+      </div>
+      {loading && <DivErro />}
+      {!loading && getPokeDetails && (
+        <DetalheCard color={colors[getPokeDetails.types[0].type.name]}>
+          <ImageFront>
+            <ImgDetails src={getPokeDetails.sprites.front_default} />
+          </ImageFront>
+          <ImageBack>
+            <ImgDetails src={getPokeDetails.sprites.back_default} />
+          </ImageBack>
+          <StatusCard>
+            <TitleInfo>Base Stats</TitleInfo>
+            {getPokeDetails.stats?.map((item, index) => {
+              return (
+                <ContainerStates key={index}>
+                  <StatsName>{Stats[index]}</StatsName>
+                  <StatsValue>{item.base_stat}</StatsValue>
+                  <ProgressBar item={item} />
+                </ContainerStates>
+              );
+            })}
+            <ContainerTotal>
+              <StatsName>Total</StatsName>
+              <StatsValue>
+                {getPokeDetails.stats.reduce((total, item) => {
+                  return total + item.base_stat;
+                }, 0)}
+              </StatsValue>
+            </ContainerTotal>
+          </StatusCard>
+          <PokeballDiv>
+            <PokemonDetail>
+              <PokeName>
+                <PokeId>{`#${getPokeDetails.id}`}</PokeId>
+                <PokeLetra>{getPokeDetails.name}</PokeLetra>
+                {getPokeDetails.types?.map((item) => {
+                  return (
+                    <TypeImg key={item.type.name} src={types[item.type.name]} />
+                  );
+                })}
+              </PokeName>
+              <PokeMoves>
+                <TitleInfo>Moves:</TitleInfo>
+                <DivMoves>
+                  {getPokeDetails.moves?.map((item, index) => {
+                    return <Move key={index}>{item.move.name}</Move>;
                   })}
-                </PokeName>
-                <PokeMoves>
-                  <TitleInfo>Moves:</TitleInfo>
-                  <DivMoves>
-                    {getPokeDetails.moves?.map((item, index) => {
-                      return (
-                        <Move key={index}>{item.move.name}</Move>
-                      )
-                    })}
-
-                  </DivMoves>
-                </PokeMoves>
-              </PokemonDetail>
-              <PokePhoto>
-                <PokeOut src={getPokeDetails.sprites.other["official-artwork"].front_default} />
-              </PokePhoto>
-            </PokeballDiv>
-          </DetalheCard>
-}
-        </ContainerDetails>
-
+                </DivMoves>
+              </PokeMoves>
+            </PokemonDetail>
+            <PokePhoto>
+              <PokeOut
+                src={
+                  getPokeDetails.sprites.other["official-artwork"].front_default
+                }
+              />
+            </PokePhoto>
+          </PokeballDiv>
+        </DetalheCard>
+      )}
+    </ContainerDetails>
   );
 }

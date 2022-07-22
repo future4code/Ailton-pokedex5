@@ -37,7 +37,7 @@ export default function Header({ page }) {
   };
   return (
     <HeaderContainer>
-      <DivHeader>
+      <DivHeader className="box1">
         {page !== "home" && (
           <Voltar onClick={() => goToHomePage(navigate)}>
             <VetorImg src={Vetor} />
@@ -45,10 +45,10 @@ export default function Header({ page }) {
           </Voltar>
         )}
       </DivHeader>
-      <DivHeader>
+      <DivHeader className="box2">
         <ImgHeader src={Logo} />
       </DivHeader>
-      <DivHeader>
+      <DivHeader className="box3">
         {page === "home" && (
           <ButtonHeader onClick={() => goToPokedex(navigate)}>
             Pokedéx

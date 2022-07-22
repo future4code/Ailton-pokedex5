@@ -2,7 +2,7 @@ import axios from "axios";
 import {useEffect, useState } from "react";
 
 
-export const useRequest = (url, loading) => {
+export const useRequest = (url, loading, setError) => {
     const [data,setData] = useState(undefined);
    
   useEffect(() => {
@@ -15,6 +15,7 @@ export const useRequest = (url, loading) => {
       })
       .catch((err) => {
         loading(false)
+        setError && setError(err.response)
         console.log(err.response);
       });
   }, [url]);
