@@ -30,7 +30,6 @@ export default function HomePage() {
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    console.log(Number(params.page), totalPages);
     if (Number(params.page) < totalPages) {
       setPagination(Number(params.page) - 1);
     }

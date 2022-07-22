@@ -11,7 +11,7 @@ export default function GlobalState(props) {
   const [select, setSelect] = useState("");
   const [pagination, setPagination] = useState(0);
   const [loading, setLoading] = useLoading();
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   if (myPokes === "") {
     const getLocal = JSON.parse(localStorage.getItem("myPokes"));
@@ -21,7 +21,7 @@ export default function GlobalState(props) {
   useEffect(() => {
     localStorage.setItem("myPokes", JSON.stringify(myPokes));
   }, [myPokes]);
-  console.log(loading);
+
   const getPokeList = useRequest(
     `${BaseUrl}pokemon/?offset=${pagination * 30}&limit=30`,
     setLoading
@@ -41,7 +41,7 @@ export default function GlobalState(props) {
     loading,
     setLoading,
     setError,
-    error
+    error,
   };
   return <Provider value={values}>{props.children}</Provider>;
 }

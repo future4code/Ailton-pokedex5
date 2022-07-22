@@ -3,10 +3,7 @@ import { Router } from "./routes/Router";
 import { DivApp } from "./styleGeral";
 import GlobalState from "./Components/Global/GlobalState";
 
-
 function App() {
-
- 
   return (
     <DivApp>
       <GlobalState>

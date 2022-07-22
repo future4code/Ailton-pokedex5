@@ -22,7 +22,8 @@ import { GlobalContext } from "../Global/GlobalContext";
 
 export default function Header({ page }) {
   const navigate = useNavigate();
-  const { setMyPokes, myPokes, setAlert, setSelect } = useContext(GlobalContext);
+  const { setMyPokes, myPokes, setAlert, setSelect } =
+    useContext(GlobalContext);
   const Params = useParams();
 
   const liberar = (poke) => {
@@ -32,8 +33,8 @@ export default function Header({ page }) {
       }
     });
     setMyPokes(newArray);
-    setAlert(true)
-    setSelect('remove')
+    setAlert(true);
+    setSelect("remove");
   };
   return (
     <HeaderContainer>
@@ -54,16 +55,23 @@ export default function Header({ page }) {
             Pokedéx
           </ButtonHeader>
         )}
-        {page === "details" && (myPokes.includes(Params.id.toLowerCase()) || (
-          <ButtonCapturar onClick={() => {
-            setMyPokes([...myPokes, Params.id.toLowerCase()])
-            setAlert(true)
-            setSelect('catch')
-          }}>Capturar Pokémon!</ButtonCapturar>
-        ))}
-        {page === "details" && (myPokes.includes(Params.id.toLowerCase()) && (
-          <ButtonExcluir onClick={() => liberar(Params.id.toLowerCase())}>Liberar Pokémon</ButtonExcluir>
-        ))}
+        {page === "details" &&
+          (myPokes.includes(Params.id.toLowerCase()) || (
+            <ButtonCapturar
+              onClick={() => {
+                setMyPokes([...myPokes, Params.id.toLowerCase()]);
+                setAlert(true);
+                setSelect("catch");
+              }}
+            >
+              Capturar Pokémon!
+            </ButtonCapturar>
+          ))}
+        {page === "details" && myPokes.includes(Params.id.toLowerCase()) && (
+          <ButtonExcluir onClick={() => liberar(Params.id.toLowerCase())}>
+            Liberar Pokémon
+          </ButtonExcluir>
+        )}
       </DivHeader>
     </HeaderContainer>
   );

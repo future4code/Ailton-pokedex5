@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import { createGlobalStyle } from 'styled-components';
-import Poppins from './assets/Fonts/Poppins/Poppins-Regular.ttf'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { createGlobalStyle } from "styled-components";
+import Poppins from "./assets/Fonts/Poppins/Poppins-Regular.ttf";
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -24,13 +24,10 @@ min-height: 100vh;
 }
 `;
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GlobalStyle/>
+    <GlobalStyle />
     <App />
   </React.StrictMode>
 );
-
-
