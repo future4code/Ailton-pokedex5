@@ -27,6 +27,7 @@ export default function PokedexPage() {
           {myPokes?.map((item) => {
             return (
               <CardPokemon
+              key={item}
                 setAlert={setAlert}
                 setSelect={setSelect}
                 poke={{ name: item }}

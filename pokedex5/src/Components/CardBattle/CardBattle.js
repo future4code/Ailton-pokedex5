@@ -13,10 +13,16 @@ import { types, Stats, colors } from "../../constants/types";
 import { PokemonName, TypeImg } from "../CardPokemon/styled";
 import {ProgressBar} from "../ProgressBar/ProgressBar";
 import { PokeId, StatsName, StatsValue } from "../../Pages/DetailsPage/styled";
+import { useRequest } from "../../services/hooks/useRequest";
+import { BaseUrl } from "../../constants/baseUrl";
 
-export const CardBattle = ({pokemon}) => {
-    console.log(pokemon)
+export const CardBattle = ({selectPokemon, setLoading}) => {
+    const pokemon = useRequest(`${BaseUrl}pokemon/${selectPokemon}`, setLoading);
+
+
   return (
+    <>
+      { pokemon && 
     <ContainerCardBattle color={colors[pokemon.types[0].type.name]}>
         <PokeImg src={pokemon.sprites.other['official-artwork'].front_default}/>
       <ContainerInfo>
@@ -50,6 +56,8 @@ export const CardBattle = ({pokemon}) => {
       </ContainerTotal>
       
     </ContainerCardBattle>
+    }
+    </>
     
   );
 };
