@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState } from "react";
 import {
   ContainerCardBattle,
   ContainerInfo,
@@ -17,7 +17,8 @@ import { useRequest } from "../../services/hooks/useRequest";
 import { BaseUrl } from "../../constants/baseUrl";
 
 export const CardBattle = ({ selectPokemon, setLoading, totalStats }) => {
-  const pokemon = useRequest(`${BaseUrl}pokemon/${selectPokemon}`, setLoading);
+  const pokemon = useRequest(`${BaseUrl}pokemon/${selectPokemon}`, setLoading);  
+  const [newPic, setNewPic] = useState("")
 
   useEffect(()=>{
     if (!!pokemon) {
@@ -29,12 +30,28 @@ export const CardBattle = ({ selectPokemon, setLoading, totalStats }) => {
     }
   },[pokemon])
 
+  useEffect(() => {
+    if (pokemon?.sprites.other["official-artwork"].front_default === null) {
+      const arrayUrl = pokemon.species.url.split("/");
+      setNewPic(
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+          arrayUrl[arrayUrl.length - 2]
+        }.png`
+        );
+    }
+  }, [pokemon]);
+
   return (
     <>
       {pokemon && (
         <ContainerCardBattle color={colors[pokemon.types[0].type.name]}>
           <PokeImg
-            src={pokemon.sprites.other["official-artwork"].front_default}
+            src={
+              pokemon.sprites.other["official-artwork"].front_default ===
+                  null
+                    ? newPic
+                    : pokemon.sprites.other["official-artwork"].front_default
+            }
           />
           <ContainerInfo>
             <PokeId>#{pokemon.id}</PokeId>

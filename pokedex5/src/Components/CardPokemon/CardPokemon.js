@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ContainerCardPokemon,
   ContainerNomeTipo,
@@ -28,6 +28,7 @@ export default function CardPokemon({
   setLoading,
 }) {
   const navigate = useNavigate();
+  const [newPic, setNewPic] = useState("");
   const getPoke = useRequest(`${BaseUrl}pokemon/${poke.name}`, setLoading);
 
   const liberar = (poke) => {
@@ -40,7 +41,16 @@ export default function CardPokemon({
     setAlert(true);
     setSelect("remove");
   };
-
+  useEffect(() => {
+    if (getPoke?.sprites.other["official-artwork"].front_default === null) {
+      const arrayUrl = getPoke.species.url.split("/");
+      setNewPic(
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+          arrayUrl[arrayUrl.length - 2]
+        }.png`
+        );
+    }
+  }, [getPoke]);
   return (
     <>
       {getPoke && (
@@ -48,7 +58,11 @@ export default function CardPokemon({
           <ContainerNomeTipo>
             <div>
               <IdPokemon>{`#${getPoke.id}`}</IdPokemon>
-              <PokemonName>{getPoke.name}</PokemonName>
+              <PokemonName>
+                {getPoke.name.includes("-")
+                  ? getPoke.species.name
+                  : getPoke.name}
+              </PokemonName>
               <ContainerTypes>
                 {getPoke.types?.map((item) => {
                   return (
@@ -68,7 +82,12 @@ export default function CardPokemon({
           <ContainerFotoBotão>
             <ContainerImgPoke>
               <ImagemPoke
-                src={getPoke.sprites.other["official-artwork"].front_default}
+                src={
+                  getPoke.sprites.other["official-artwork"].front_default ===
+                  null
+                    ? newPic
+                    : getPoke.sprites.other["official-artwork"].front_default
+                }
               />
             </ContainerImgPoke>
             {myPokes.includes(getPoke.name) || (

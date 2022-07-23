@@ -53,7 +53,6 @@ export default function BattlePage() {
     setSelect("battle");
     setAlert(true);
   };
-
   return (
     <div>
       <Alert winner={winner} />
