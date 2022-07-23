@@ -15,7 +15,6 @@ export const useRequest = (url, loading, setError) => {
       .catch((err) => {
         loading(false);
         setError && setError(err.response);
-        console.log(err.response);
       });
   }, [url]);
   return data;

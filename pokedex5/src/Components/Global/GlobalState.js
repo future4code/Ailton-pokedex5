@@ -27,7 +27,6 @@ export default function GlobalState(props) {
     setLoading
   );
   const totalPages = getPokeList?.count / 30;
-  const count= getPokeList?.count;
   const values = {
     myPokes,
     setMyPokes,
@@ -42,8 +41,7 @@ export default function GlobalState(props) {
     loading,
     setLoading,
     setError,
-    error,
-    count
+    error,    
   };
   return <Provider value={values}>{props.children}</Provider>;
 }

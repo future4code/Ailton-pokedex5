@@ -1,49 +1,97 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../../Components/Header/Header";
-import { MainBattle, ContainerChoices } from "./styled";
+import {
+  MainBattle,
+  ContainerChoices,
+  ContainerCards,
+  ButtonBattle,
+  ButtonOpp,
+  SelectOpp,
+  Option,
+} from "./styled";
 import { CardBattle } from "../../Components/CardBattle/CardBattle";
 import { GlobalContext } from "../../Components/Global/GlobalContext";
-import { useRequest } from "../../services/hooks/useRequest";
-import { useParams } from "react-router-dom";
-import { BaseUrl } from "../../constants/baseUrl";
 import { DivErro } from "../../styleGeral";
+import Alert from "../../Components/Alert/Alert";
 
 export default function BattlePage() {
-  const { myPokes, loading, setLoading, count} = useContext(GlobalContext);
+  const { myPokes, loading, setLoading, setAlert, setSelect } =
+    useContext(GlobalContext);
   const [selectPokemon, setSelectPokemon] = useState("");
-  const[random, setRandom]= useState("");
+  const [myPokeStats, setMyPokeStats] = useState("");
+  const [rivalStats, setRivalStats] = useState("");
+  const [random, setRandom] = useState("");
+  const [winner, setWinner] = useState("");
   const onChangePokemon = (event) => {
     setSelectPokemon(event.target.value);
   };
 
-  const randomPoke = ()=>{
-    setRandom(  Math.floor(Math.random() * (count - 1)) + 1)
+  const randomPoke = () => {
+    setRandom(Math.floor(Math.random() * (905 - 1)) + 1);
   };
-  
+
+  const battleInfo = () => {
+    if (myPokeStats.stats > rivalStats.stats) {
+      setWinner({
+        winner: "You win!",
+        message: `E o pokemon vencedor é ${
+          myPokeStats.name[0].toUpperCase() + myPokeStats.name.substr(1)
+        }!`,
+      });
+    } else if (rivalStats.stats > myPokeStats.stats) {
+      setWinner({
+        winner: "You lose!",
+        message: `E o pokemon vencedor é ${
+          rivalStats.name[0].toUpperCase() + rivalStats.name.substr(1)
+        }!`,
+      });
+    } else {
+      setWinner({
+        winner: `Empate!`,
+      });
+    }
+    setSelect("battle");
+    setAlert(true);
+  };
+
   return (
     <div>
+      <Alert winner={winner} />
       <Header />
       <MainBattle>
         <ContainerChoices>
-          <select onChange={onChangePokemon}>
+          <SelectOpp onChange={onChangePokemon}>
             <option value={""}>Selecione um pokemon</option>
             {myPokes.map((item) => {
               return (
-                <option key={item} value={item}>
+                <Option key={item} value={item}>
                   {item}
-                </option>
+                </Option>
               );
             })}
-          </select>
-          <button onClick={randomPoke}>Encontre um oponente</button>
+          </SelectOpp>
+          {selectPokemon && (
+            <ButtonOpp onClick={randomPoke}>Encontre um oponente</ButtonOpp>
+          )}
         </ContainerChoices>
         {loading && <DivErro />}
-        {!loading && selectPokemon && (
-          <CardBattle selectPokemon={selectPokemon} setLoading={setLoading} />
-        )}
-        { !loading && random &&
-        <CardBattle selectPokemon={random} setLoading={setLoading}/>
-      }
+        <ContainerCards>
+          {!loading && selectPokemon && (
+            <CardBattle
+              selectPokemon={selectPokemon}
+              setLoading={setLoading}
+              totalStats={setMyPokeStats}
+            />
+          )}
+          {!loading && random && <ButtonBattle onClick={battleInfo} />}
+          {selectPokemon && !loading && random && (
+            <CardBattle
+              selectPokemon={random}
+              setLoading={setLoading}
+              totalStats={setRivalStats}
+            />
+          )}
+        </ContainerCards>
       </MainBattle>
     </div>
   );

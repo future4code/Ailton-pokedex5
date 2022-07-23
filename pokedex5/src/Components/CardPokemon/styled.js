@@ -102,7 +102,11 @@ export const ButtonCapturar = styled.button`
 export const ImagemPoke = styled.img`
   position: relative;
   top: -35%;
-  width: 193px;
+  width: 193px;  
+  transition: 0.7s;
+  :hover{
+    transform: scale(1.2);
+  }
 `;
 export const ContainerImgPoke = styled.div`
   width: 100%;

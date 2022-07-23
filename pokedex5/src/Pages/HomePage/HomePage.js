@@ -65,7 +65,7 @@ export default function HomePage() {
       {!loading && getPokeList && (
         <>
           <MainGeral>
-            {getPokeList.results?.map((item, index) => {
+            {getPokeList.results?.map((item, index, array) => {
               return (
                 <CardPokemon
                   key={index + 1}
@@ -101,7 +101,6 @@ export default function HomePage() {
                 {pagination + 3}
               </PNav>
             )}
-            <p></p>
           </DivNav>
         </>
       )}

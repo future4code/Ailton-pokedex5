@@ -19,7 +19,6 @@ import { BaseUrl } from "../../constants/baseUrl";
 import { useNavigate } from "react-router-dom";
 import { goToDetailsPage } from "../../routes/Coordinator";
 
-
 export default function CardPokemon({
   poke,
   setMyPokes,
