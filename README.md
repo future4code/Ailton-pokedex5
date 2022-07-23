@@ -13,7 +13,7 @@ PageDetails do Pokemon(detalhes específicos do pokemon escolhido).
 - Myllena Moreira
 - Paulo Henrique Correa
 
-Link do Surge: www.link.com.br
+Link do Surge: www.https://pokedex-five.surge.sh
 
 O que funciona:
 - Botão de ver detalhes do pokemon
