@@ -23,7 +23,7 @@ O que funciona:
 - Paginação
 
 
-Desafios Aplicados
+Funcionalidades Extras
 - Paginação
 - Batalha pokemon
 - Responsividade
