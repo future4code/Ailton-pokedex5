@@ -9,11 +9,11 @@ export const DivApp = styled.div`
 `;
 
 export const ContainerTitle = styled.div`
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-right:40px;
-`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 40px;
+`;
 export const Title = styled.h3`
   font-size: 48px;
   color: white;

@@ -26,5 +26,5 @@ export const Progress = styled(BaseBox)`
       : item.base_stat >= 90 && item.base_stat <= 119
       ? "#a0e515"
       : "#23cd5e"};
-  width: ${({ item }) => `${item.base_stat}%`};
+  width: ${({ item }) => `${item.base_stat * 0.75}%`};
 `;

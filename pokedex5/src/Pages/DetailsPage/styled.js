@@ -67,10 +67,8 @@ export const ImageFront = styled.div`
     grid-area: 3/1/4/2;
     width: 300px;
     margin: 0 auto;
-    @media screen and (max-width: 690px) {
-      /* height: 300px; */
-    }
-  }
+  }  
+  transition: 0.7s;
 `;
 export const ImageBack = styled.div`
   grid-area: 2/1/3/2;
@@ -88,15 +86,15 @@ export const ImageBack = styled.div`
     grid-area: 3/2/4/3;
     width: 300px;
     margin: 0 auto;
-    @media screen and (max-width: 690px) {
-      /* grid-area: 4/1/5/2;
-    height: 300px; */
-    }
   }
 `;
 
 export const ImgDetails = styled.img`
-  height: 250px;
+  height: 250px;  
+  transition: 0.7s;
+  :hover{
+    transform: scale(1.2);
+  }
 `;
 
 export const StatusCard = styled.div`
@@ -210,6 +208,10 @@ export const PokeOut = styled.img`
     height: 170px;
     left: 80px;
     top: -130px;
+  }  
+  transition: 0.7s;
+  :hover{
+    transform: scale(1.2);
   }
 `;
 

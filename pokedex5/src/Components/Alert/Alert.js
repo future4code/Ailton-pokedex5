@@ -7,9 +7,8 @@ import {
 } from "./styled";
 import { GlobalContext } from "../Global/GlobalContext";
 
-export default function Alert() {
+export default function Alert({ winner }) {
   const { alert, setAlert, select } = useContext(GlobalContext);
-
   return (
     <>
       {alert && (
@@ -29,6 +28,14 @@ export default function Alert() {
                 <DescriptionAlert>
                   O Pokémon foi removido da sua Pokedéx
                 </DescriptionAlert>
+              </>
+            )}
+            {select === "battle" && (
+              <>
+                <TitleAlert>{winner.winner}</TitleAlert>
+                {winner.message && (
+                  <DescriptionAlert>{winner.message}</DescriptionAlert>
+                )}
               </>
             )}
           </TextAlert>

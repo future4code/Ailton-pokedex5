@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
 import { DivErro, Title } from "../../styleGeral";
 import {
@@ -39,6 +39,7 @@ export default function DetailsPage() {
   const params = useParams();
   const navigate = useNavigate();
   const { setLoading, loading, setError, error } = useContext(GlobalContext);
+  const [newPic, setNewPic] = useState("")
 
   const getPokeDetails = useRequest(
     `${BaseUrl}pokemon/${params.id}`,
@@ -48,6 +49,16 @@ export default function DetailsPage() {
   if (error) {
     goErrorPage(navigate);
   }
+  useEffect(() => {
+    if (getPokeDetails?.sprites.other["official-artwork"].front_default === null) {
+      const arrayUrl = getPokeDetails.species.url.split("/");
+      setNewPic(
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+          arrayUrl[arrayUrl.length - 2]
+        }.png`
+        );
+    }
+  }, [getPokeDetails]);
   return (
     <ContainerDetails>
       <Alert />
@@ -89,7 +100,11 @@ export default function DetailsPage() {
             <PokemonDetail>
               <PokeName>
                 <PokeId>{`#${getPokeDetails.id}`}</PokeId>
-                <PokeLetra>{getPokeDetails.name}</PokeLetra>
+                <PokeLetra>
+                  {getPokeDetails.name.includes("-")
+                    ? getPokeDetails.species.name
+                    : getPokeDetails.name}
+                </PokeLetra>
                 {getPokeDetails.types?.map((item) => {
                   return (
                     <TypeImg key={item.type.name} src={types[item.type.name]} />
@@ -108,7 +123,10 @@ export default function DetailsPage() {
             <PokePhoto>
               <PokeOut
                 src={
-                  getPokeDetails.sprites.other["official-artwork"].front_default
+                  getPokeDetails.sprites.other["official-artwork"].front_default ===
+                  null
+                    ? newPic
+                    : getPokeDetails.sprites.other["official-artwork"].front_default
                 }
               />
             </PokePhoto>
