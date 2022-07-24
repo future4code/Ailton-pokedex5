@@ -11,19 +11,19 @@ import {
 } from "./styled";
 import { CardBattle } from "../../Components/CardBattle/CardBattle";
 import { GlobalContext } from "../../Components/Global/GlobalContext";
-import { DivErro } from "../../styleGeral";
 import Alert from "../../Components/Alert/Alert";
 
 export default function BattlePage() {
-  const { myPokes, loading, setLoading, setAlert, setSelect } =
-    useContext(GlobalContext);
+  const { myPokes, setAlert, setSelect } = useContext(GlobalContext);
   const [selectPokemon, setSelectPokemon] = useState("");
   const [myPokeStats, setMyPokeStats] = useState("");
   const [rivalStats, setRivalStats] = useState("");
   const [random, setRandom] = useState("");
   const [winner, setWinner] = useState("");
   const onChangePokemon = (event) => {
-    setSelectPokemon(event.target.value);
+    if (event.target.value !== selectPokemon) {
+      setSelectPokemon(event.target.value);
+    }
   };
 
   const randomPoke = () => {
@@ -59,7 +59,7 @@ export default function BattlePage() {
       <Header />
       <MainBattle>
         <ContainerChoices>
-          <SelectOpp onChange={onChangePokemon}>
+          <SelectOpp value={selectPokemon} onChange={onChangePokemon}>
             <option value={""}>Selecione um pokemon</option>
             {myPokes.map((item) => {
               return (
@@ -70,25 +70,21 @@ export default function BattlePage() {
             })}
           </SelectOpp>
           {selectPokemon && (
-            <ButtonOpp onClick={randomPoke}>Encontre um oponente</ButtonOpp>
+            <ButtonOpp onClick={() => randomPoke()}>
+              Encontre um oponente
+            </ButtonOpp>
           )}
         </ContainerChoices>
-        {loading && <DivErro />}
         <ContainerCards>
-          {!loading && selectPokemon && (
+          {selectPokemon && (
             <CardBattle
               selectPokemon={selectPokemon}
-              setLoading={setLoading}
               totalStats={setMyPokeStats}
             />
           )}
-          {!loading && random && <ButtonBattle onClick={battleInfo} />}
-          {selectPokemon && !loading && random && (
-            <CardBattle
-              selectPokemon={random}
-              setLoading={setLoading}
-              totalStats={setRivalStats}
-            />
+          {random && <ButtonBattle onClick={() => battleInfo()} />}
+          {selectPokemon && random && (
+            <CardBattle selectPokemon={random} totalStats={setRivalStats} />
           )}
         </ContainerCards>
       </MainBattle>

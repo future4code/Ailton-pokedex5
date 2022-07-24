@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
-import { DivErro, Title } from "../../styleGeral";
+import { Title } from "../../styleGeral";
 import {
   TypeImg,
   PokeballDiv,
@@ -38,12 +38,11 @@ import { goErrorPage } from "../../routes/Coordinator";
 export default function DetailsPage() {
   const params = useParams();
   const navigate = useNavigate();
-  const { setLoading, loading, setError, error } = useContext(GlobalContext);
+  const { setError, error } = useContext(GlobalContext);
   const [newPic, setNewPic] = useState("")
 
   const getPokeDetails = useRequest(
     `${BaseUrl}pokemon/${params.id}`,
-    setLoading,
     setError
   );
   if (error) {
@@ -67,8 +66,7 @@ export default function DetailsPage() {
       <div>
         <Title>Detalhes</Title>
       </div>
-      {loading && <DivErro />}
-      {!loading && getPokeDetails && (
+      { getPokeDetails && (
         <DetalheCard color={colors[getPokeDetails.types[0].type.name]}>
           <ImageFront>
             <ImgDetails src={getPokeDetails.sprites.front_default} />

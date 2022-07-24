@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Header from "../../Components/Header/Header";
-import { DivErro, Title } from "../../styleGeral";
+import { Title } from "../../styleGeral";
 import CardPokemon from "../../Components/CardPokemon/CardPokemon";
 import { MainGeral } from "../../styleGeral";
 import { GlobalContext } from "../../Components/Global/GlobalContext";
@@ -23,35 +23,30 @@ export default function HomePage() {
     setPagination,
     pagination,
     totalPages,
-    loading,
-    setLoading,
     setAlert,
     setSelect,
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    if (Number(params.page) < totalPages) {
-      setPagination(Number(params.page) - 1);
-    }
-    if (Number(params.page) > totalPages) {
-      goErrorPage(navigate);
-    }
-    if (pagination === 0 && params.page === "1") {
-      goToHomePage(navigate);
-    }
-    if (pagination > 0) {
-      goToHomePageId(navigate, pagination + 1);
-    }
-  }, [totalPages]);
-
-  useEffect(() => {
-    if (pagination === 0 && !params) {
+    if (pagination === 0 && Number(params.page) === 1) {
       goToHomePage(navigate);
     }
     if (pagination > 0) {
       goToHomePageId(navigate, pagination + 1);
     }
   }, [pagination]);
+
+  useEffect(() => {
+    if (Number(params.page) <= totalPages + 1) {
+      const page = Number(params.page) - 1;
+      console.log("aaa", page);
+      setPagination(page);
+      console.log("entrou");
+    }
+    if (Number(params.page) > totalPages + 1) {
+      goErrorPage(navigate);
+    }
+  }, [totalPages]);
 
   return (
     <div>
@@ -61,18 +56,16 @@ export default function HomePage() {
         <Title>Todos os Pokémons</Title>
       </div>
 
-      {loading && <DivErro />}
-      {!loading && getPokeList && (
+      {getPokeList && (
         <>
           <MainGeral>
-            {getPokeList.results?.map((item, index, array) => {
+            {getPokeList.results?.map((item, index) => {
               return (
                 <CardPokemon
                   key={index + 1}
                   poke={item}
                   setMyPokes={setMyPokes}
                   myPokes={myPokes}
-                  setLoading={setLoading}
                   setAlert={setAlert}
                   setSelect={setSelect}
                 />
