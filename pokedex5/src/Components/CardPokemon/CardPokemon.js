@@ -12,6 +12,7 @@ import {
   ImagemPoke,
   ContainerImgPoke,
   MainHome,
+  ButtonLiberar,
 } from "./styled";
 import { types, colors } from "../../constants/types";
 import { useRequest } from "../../services/hooks/useRequest";
@@ -25,11 +26,10 @@ export default function CardPokemon({
   myPokes,
   setAlert,
   setSelect,
-  setLoading,
 }) {
   const navigate = useNavigate();
   const [newPic, setNewPic] = useState("");
-  const getPoke = useRequest(`${BaseUrl}pokemon/${poke.name}`, setLoading);
+  const getPoke = useRequest(`${BaseUrl}pokemon/${poke.name}`);
 
   const liberar = (poke) => {
     const newArray = myPokes.filter((item) => {
@@ -48,7 +48,7 @@ export default function CardPokemon({
         `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
           arrayUrl[arrayUrl.length - 2]
         }.png`
-        );
+      );
     }
   }, [getPoke]);
   return (
@@ -102,9 +102,9 @@ export default function CardPokemon({
               </ButtonCapturar>
             )}
             {myPokes.includes(getPoke.name) && (
-              <ButtonCapturar onClick={() => liberar(getPoke.name)}>
+              <ButtonLiberar onClick={() => liberar(getPoke.name)}>
                 Liberar!
-              </ButtonCapturar>
+              </ButtonLiberar>
             )}
           </ContainerFotoBotão>
         </ContainerCardPokemon>

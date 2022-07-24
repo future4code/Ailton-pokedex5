@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Header from "../../Components/Header/Header";
-import { ContainerTitle, DivErro, Title } from "../../styleGeral";
+import { ContainerTitle, Title } from "../../styleGeral";
 import { MainGeral } from "../../styleGeral";
 import CardPokemon from "../../Components/CardPokemon/CardPokemon";
 import { ButtonBattle, ContainerPokedex } from "./styled";
@@ -10,7 +10,7 @@ import { goToBattlePage } from "../../routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 
 export default function PokedexPage() {
-  const { myPokes, setMyPokes, setAlert, setSelect, setLoading, loading } =
+  const { myPokes, setMyPokes, setAlert, setSelect } =
     useContext(GlobalContext);
     const navigate = useNavigate();
   return (
@@ -21,8 +21,7 @@ export default function PokedexPage() {
         <Title>Meus Pokémons</Title>
         <ButtonBattle onClick={()=> goToBattlePage(navigate)}/>
       </ContainerTitle>
-      {loading && <DivErro />}
-      {!loading && myPokes && (
+      { myPokes && (
         <MainGeral>
           {myPokes?.map((item) => {
             return (
@@ -33,7 +32,6 @@ export default function PokedexPage() {
                 poke={{ name: item }}
                 myPokes={myPokes}
                 setMyPokes={setMyPokes}
-                setLoading={setLoading}
               />
             );
           })}

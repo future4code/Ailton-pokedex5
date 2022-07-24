@@ -99,6 +99,12 @@ export const ButtonCapturar = styled.button`
   font-size: 16px;
   line-height: 24px;
 `;
+
+export const ButtonLiberar = styled(ButtonCapturar)`
+  background-color: #FF6262;
+  color:white;
+`
+
 export const ImagemPoke = styled.img`
   position: relative;
   top: -35%;

@@ -38,13 +38,3 @@ export const MainGeral = styled.main`
     grid-template-columns: repeat(auto-fill, 460px);
   }
 `;
-export const DivErro = styled.div`
-  width: 250px;
-  height: 250px;
-  background-image: url(${pokedexColorida});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0 auto;
-  border-radius: 50%;
-`;
