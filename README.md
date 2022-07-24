@@ -11,6 +11,7 @@ Neste projeto criamos uma Pokedex com o auxílio de uma [API](https://pokeapi.co
 <br>
 Pré-requisitos do projeto: PageHome(exibição de pokemons disponíveis), PagePokedex (onde seriam visualizados os pokemons capturados) e PageDetails do Pokemon(detalhes específicos do pokemon escolhido).
 <br>
+Tecnologias utilizadas: React.Js, Axios, Styled-Components, React-Router-DOM, HTML5, CSS, API, CustomHooks;
 <br>
 
 Nome dos integrantes:
