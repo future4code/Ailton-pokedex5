@@ -13,7 +13,7 @@ PageDetails do Pokemon(detalhes específicos do pokemon escolhido).
 - [Myllena Moreira](https://github.com/Myllenam)
 - [Paulo Henrique Correa](https://github.com/phcsilva056)
 
-Link do Surge: https://pokedex-five.surge.sh
+[Visite a Pokedex](https://pokedex-five.surge.sh)
 
 O que funciona:
 - Botão de ver detalhes do pokemon
