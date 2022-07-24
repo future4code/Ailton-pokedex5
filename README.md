@@ -37,4 +37,4 @@ Funcionalidades Extras
 - Paginação(exibição de todos os pokemons da api)
 - PageBattle (onde acontece a batalha entre um pokemon da sua pokedex contra um aleatório da api)
 - Responsividade
-- CustomHooks de loading
+
