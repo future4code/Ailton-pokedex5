@@ -8,10 +8,10 @@ PagePokedex (onde seriam visualizados os pokemons capturados) e
 PageDetails do Pokemon(detalhes específicos do pokemon escolhido).
 <br>
 <br>Nome dos integrantes: 
-- João Gabriel Sales
-- Mayara Costa
-- Myllena Moreira
-- Paulo Henrique Correa
+- [João Gabriel Sales](https://github.com/GabeSales)
+- [Mayara Costa](https://github.com/aonosorah)
+- [Myllena Moreira](https://github.com/Myllenam)
+- [Paulo Henrique Correa](https://github.com/phcsilva056)
 
 Link do Surge: https://pokedex-five.surge.sh
 
