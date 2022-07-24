@@ -82,7 +82,7 @@ export default function BattlePage() {
               totalStats={setMyPokeStats}
             />
           )}
-          {random && <ButtonBattle onClick={() => battleInfo()} />}
+          {selectPokemon && random && <ButtonBattle onClick={() => battleInfo()} />}
           {selectPokemon && random && (
             <CardBattle selectPokemon={random} totalStats={setRivalStats} />
           )}
