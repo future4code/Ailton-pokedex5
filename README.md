@@ -6,7 +6,7 @@
 
 
 
-Neste projeto criamos uma Pokedex com o auxílio de uma [API](https://pokeapi.co/), e estilização pré-determinada. Seguimos o exemplo disponibilizado através do [Figma](https://www.figma.com/file/KseyA2Ofghiek2Cy3ZaDre/Wireframe---Pok%C3%A9dex-(Copy)?node-id=2%3A2). Nosso intuito era praticar a utilização do GlobalState, GlobalContext e Routes, simulando como seria ter que aplicar estando em um empresa.
+Neste projeto criamos uma Pokedex com o auxílio de uma [API](https://pokeapi.co/), e estilização pré-determinada. Seguimos o exemplo disponibilizado através do [Figma](https://www.figma.com/file/KseyA2Ofghiek2Cy3ZaDre/Wireframe---Pok%C3%A9dex-(Copy)?node-id=2%3A2). Nosso intuito foi praticar a utilização do GlobalState, GlobalContext e Routes, simulando como seria ter que aplicar estando em um empresa.
 <br>
 <br>
 Pré-requisitos do projeto: PageHome(exibição de pokemons disponíveis), PagePokedex (onde seriam visualizados os pokemons capturados) e PageDetails do Pokemon(detalhes específicos do pokemon escolhido).
