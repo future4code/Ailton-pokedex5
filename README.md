@@ -1,4 +1,10 @@
-<center>![image](https://user-images.githubusercontent.com/102835599/180620763-88ac758b-4d1e-4cfb-9630-8b68cae79e48.png)
+<p align="center">
+  <img  src="https://user-images.githubusercontent.com/102835599/180620763-88ac758b-4d1e-4cfb-9630-8b68cae79e48.png">
+</p>
+
+
+
+
 
 Neste projeto criamos uma Pokedex com o auxílio de uma [API](https://pokeapi.co/), e estilização pré-determinada.
 Seguimos o exemplo disponibilizado através do [Figma](https://www.figma.com/file/KseyA2Ofghiek2Cy3ZaDre/Wireframe---Pok%C3%A9dex-(Copy)?node-id=2%3A2). 
