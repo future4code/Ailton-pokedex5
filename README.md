@@ -14,13 +14,14 @@ Pré-requisitos do projeto:
  - PagePokedex (onde seriam visualizados os pokemons capturados) e 
  - PageDetails do Pokemon(detalhes específicos do pokemon escolhido).
 <br>
+<br>
 <br>Nome dos integrantes: 
 - [João Gabriel Sales](https://github.com/GabeSales)
 - [Mayara Costa](https://github.com/aonosorah)
 - [Myllena Moreira](https://github.com/Myllenam)
 - [Paulo Henrique Correa](https://github.com/phcsilva056)
 
-##[Visite a Pokedex](https://pokedex-five.surge.sh)
+## [Visite a Pokedex](https://pokedex-five.surge.sh)
 
 O que funciona:
 - Botão de ver detalhes do pokemon
